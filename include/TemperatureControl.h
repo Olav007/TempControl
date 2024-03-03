@@ -1,5 +1,5 @@
 #pragma once
-#include "TemperatureRegulationInterface.h"
+#include "..\include\TemperatureRegulationInterface.h"
 
 class TemperatureControl
 {
