@@ -18,12 +18,15 @@
     <ClInclude Include="TemperatureControl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\TempratureRegulationInterface.h">
+    <ClInclude Include="include\TemperatureRegulationInterface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\TemperatureControl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tst\maincpp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

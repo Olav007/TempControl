@@ -1,23 +1,36 @@
 #pragma once
-#include "..\include\TemperatureRegulationInterface.h"
+#include "TemperatureRegulationInterface.h"
 
 class TemperatureControl
 {
 private:
-    const TemperatureRegulationInterface& temperatureRegulationInterface;
+    TemperatureRegulationInterface& temperatureRegulationInterface;
     float minTemp;
     float maxTemp;
 public:
 
-    TemperatureControl(const TemperatureRegulationInterface& temperatureRegulationInterface, float minTemp, float maxTemp)
+
+    TemperatureControl(TemperatureRegulationInterface& temperatureRegulationInterface, float minTemp, float maxTemp)
 		: temperatureRegulationInterface(temperatureRegulationInterface), minTemp(minTemp), maxTemp(maxTemp)
 	{
 	}
-    TemperatureControl(float minTemp, float maxTemp)
+
+    void regulateTemperature(float currentTemp)
     {
-        this->minTemp = minTemp;
-        this->maxTemp = maxTemp;
-    }
+        if (currentTemp <= minTemp)
+        {
+			temperatureRegulationInterface.turnOnHeating();
+		}
+        else if (currentTemp >= maxTemp)
+        {
+			temperatureRegulationInterface.turnOnCooling();
+		}
+        else
+        {
+			temperatureRegulationInterface.turnOff();
+		}
+	}
+
 
     float getMinTemp() const
     {
