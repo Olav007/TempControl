@@ -4,22 +4,22 @@
 
 #include <iostream>
 
-class TemperatureRegulation : public TemperatureRegulationInterface {
+class TemperatureRegulationMock : public TemperatureRegulationInterface {
 public:
-    virtual void turnOnHeating(){}
-	virtual void turnOnCooling() {};
-	virtual void turnOff() {};
+    MOCK_METHOD(void, turnOnHeating, (), (override));
+    MOCK_METHOD(void, turnOnCooling, (), (override));
+    MOCK_METHOD(void, turnOff, (), (override));
 };
 
 TEST(TemperatureControl, testRegulateTemperature)
 {
-	TemperatureRegulation reg;
-	TemperatureControl tc(reg, 18, 22);
-	tc.regulateTemperature(23);
+    TemperatureRegulationMock mocc;
+    TemperatureControl tc(mocc, 18, 22);
+    tc.regulateTemperature(23);
 }
 
 int main()
 {
-	::testing::InitGoogleTest();
-	return RUN_ALL_TESTS();
+    ::testing::InitGoogleTest();
+    return RUN_ALL_TESTS();
 }
