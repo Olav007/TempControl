@@ -2,7 +2,9 @@
 #include <gmock/gmock.h>
 #include "TemperatureControl.h"
 
-#include <iostream>
+
+using ::testing::_;
+using ::testing::Return;
 
 class TemperatureRegulationMock : public TemperatureRegulationInterface {
 public:
@@ -18,8 +20,8 @@ TEST(TemperatureControl, testRegulateTemperature)
     tc.regulateTemperature(23);
 }
 
-int main()
-{
-    ::testing::InitGoogleTest();
+int main(int argc, char** argv) {
+    ::testing::InitGoogleTest(&argc, argv);
+    ::testing::InitGoogleMock(&argc, argv); // Initialize Google Mock (not always necessary, but included for completeness)
     return RUN_ALL_TESTS();
 }

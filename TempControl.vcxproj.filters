@@ -18,7 +18,7 @@
     <ClInclude Include="TemperatureControl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\TemperatureRegulationInterface.h">
+    <ClInclude Include="include\TempratureRegulationInterface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
