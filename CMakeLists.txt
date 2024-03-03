@@ -1,26 +1,26 @@
-﻿# CMakeList.txt : CMake project for TempControl, include source and define
-# project specific logic here.
-#
-cmake_minimum_required (VERSION 3.8)
+﻿cmake_minimum_required(VERSION 3.10)
+project(MyProject)
 
-# Enable Hot Reload for MSVC compilers if supported.
-if (POLICY CMP0141)
-  cmake_policy(SET CMP0141 NEW)
-  set(CMAKE_MSVC_DEBUG_INFORMATION_FORMAT "$<IF:$<AND:$<C_COMPILER_ID:MSVC>,$<CXX_COMPILER_ID:MSVC>>,$<$<CONFIG:Debug,RelWithDebInfo>:EditAndContinue>,$<$<CONFIG:Debug,RelWithDebInfo>:ProgramDatabase>>")
-endif()
+# Set C++ standard
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-project ("TempControl")
-find_package(GTest REQUIRED)
+# Include directories
+include_directories(include)
+
+# Add source files
+set(SOURCES
+    src/TemperatureControl.cpp
+    tst/maincpp.cpp
+)
+
+# Add executable target
+add_executable(MyExecutable ${SOURCES})
+
+# Google Test
+#find_package(GTest REQUIRED)
 include_directories(${GTEST_INCLUDE_DIRS})
 
-SET(SOURCES, 
-	src/TemperatureControl.cpp)
 
-# Add source to this project's executable.
-add_executable (TempControl "tst/maincpp.cpp")
 
-if (CMAKE_VERSION VERSION_GREATER 3.12)
-  set_property(TARGET TempControl PROPERTY CXX_STANDARD 20)
-endif()
-
-# TODO: Add tests and install targets if needed.
+#target_link_libraries(MyTestExecutable ${GTEST_LIBRARIES} pthread)
