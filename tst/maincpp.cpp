@@ -2,7 +2,7 @@
 #include <gmock/gmock.h>
 #include "TemperatureControl.h"
 
-
+using ::testing::AtLeast;
 using ::testing::_;
 using ::testing::Return;
 
@@ -16,6 +16,7 @@ public:
 TEST(TemperatureControl, testRegulateTemperature)
 {
     TemperatureRegulationMock mocc;
+    EXPECT_CALL(mocc, turnOnCooling());
     TemperatureControl tc(mocc, 18, 22);
     tc.regulateTemperature(23);
 }
