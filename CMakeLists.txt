@@ -10,9 +10,14 @@ if (POLICY CMP0141)
 endif()
 
 project ("TempControl")
+find_package(GTest REQUIRED)
+include_directories(${GTEST_INCLUDE_DIRS})
+
+SET(SOURCES, 
+	src/TemperatureControl.cpp)
 
 # Add source to this project's executable.
-add_executable (TempControl "TempControl.cpp" "TempControl.h")
+add_executable (TempControl "tst/maincpp.cpp")
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET TempControl PROPERTY CXX_STANDARD 20)
