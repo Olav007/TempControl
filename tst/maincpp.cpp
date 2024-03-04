@@ -21,6 +21,14 @@ TEST(TemperatureControl, testRegulateTemperature)
     tc.regulateTemperature(23);
 }
 
+TEST(TemperatureControl, testRegulateTemperatureHeat)
+{
+    TemperatureRegulationMock mocc;
+    EXPECT_CALL(mocc, turnOnHeating());
+    TemperatureControl tc(mocc, 18, 22);
+    tc.regulateTemperature(17);
+}
+
 int main(int argc, char** argv) {
     ::testing::InitGoogleTest(&argc, argv);
     ::testing::InitGoogleMock(&argc, argv); // Initialize Google Mock (not always necessary, but included for completeness)
