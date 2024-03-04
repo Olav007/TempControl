@@ -14,16 +14,15 @@ public:
 };
 
 TEST(TemperatureControl, testRegulateTemperature)
-{/*
+{
     TemperatureRegulationMock mocc;
     EXPECT_CALL(mocc, turnOnCooling());
     TemperatureControl tc(mocc, 18, 22);
     tc.regulateTemperature(23);
-*/
 }
 
 int main(int argc, char** argv) {
     ::testing::InitGoogleTest(&argc, argv);
- //   ::testing::InitGoogleMock(&argc, argv); // Initialize Google Mock (not always necessary, but included for completeness)
+    ::testing::InitGoogleMock(&argc, argv); // Initialize Google Mock (not always necessary, but included for completeness)
     return RUN_ALL_TESTS();
 }
