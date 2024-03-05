@@ -17,7 +17,7 @@ TEST(TemperatureControl, testRegulateTemperature)
 {
     TemperatureRegulationMock mocc;
     EXPECT_CALL(mocc, turnOnCooling());
-    TemperatureControl tc(mocc, 18, 22);
+    TemperatureControl<TemperatureRegulationMock> tc(mocc, 18, 22);
     tc.regulateTemperature(23);
 }
 
@@ -25,7 +25,7 @@ TEST(TemperatureControl, testRegulateTemperatureHeat)
 {
     TemperatureRegulationMock mocc;
     EXPECT_CALL(mocc, turnOnHeating());
-    TemperatureControl tc(mocc, 18, 22);
+    TemperatureControl<TemperatureRegulationMock> tc(mocc, 18, 22);
     tc.regulateTemperature(17);
 }
 

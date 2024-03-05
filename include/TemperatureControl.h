@@ -1,16 +1,17 @@
 #pragma once
 #include "TemperatureRegulationInterface.h"
 
+template <typename TemperatureRegulationInterfaceT = TemperatureRegulationInterface>
 class TemperatureControl
 {
 private:
-    TemperatureRegulationInterface& temperatureRegulationInterface;
+    TemperatureRegulationInterfaceT& temperatureRegulationInterface;
     float minTemp;
     float maxTemp;
 public:
 
 
-    TemperatureControl(TemperatureRegulationInterface& temperatureRegulationInterface, float minTemp, float maxTemp)
+    TemperatureControl(TemperatureRegulationInterfaceT& temperatureRegulationInterface, float minTemp, float maxTemp)
 		: temperatureRegulationInterface(temperatureRegulationInterface), minTemp(minTemp), maxTemp(maxTemp)
 	{
 	}
