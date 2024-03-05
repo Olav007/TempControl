@@ -13,21 +13,25 @@ public:
     MOCK_METHOD(void, turnOff, (), (override));
 };
 
-TEST(TemperatureControl, testRegulateTemperature)
+TEST(TemperatureControl, testRegulateTemperatureCooling)
 {
     TemperatureRegulationMock mocc;
-    EXPECT_CALL(mocc, turnOnCooling());
-    TemperatureControl<TemperatureRegulationMock> tc(mocc, 18, 22);
+
+    EXPECT_CALL(mocc, turnOnCooling());;
+    TemperatureControl<> tc(&mocc, 18, 22);
     tc.regulateTemperature(23);
 }
 
-TEST(TemperatureControl, testRegulateTemperatureHeat)
+TEST(TemperatureControl, testRegulateTemperatureHeatAndSharedPointer)
 {
-    TemperatureRegulationMock mocc;
-    EXPECT_CALL(mocc, turnOnHeating());
-    TemperatureControl<TemperatureRegulationMock> tc(mocc, 18, 22);
+
+    auto moccPtr = std::make_shared<TemperatureRegulationMock>();
+    EXPECT_CALL(*moccPtr, turnOnHeating());
+    TemperatureControl<decltype(moccPtr)> tc(moccPtr, 18, 22);
     tc.regulateTemperature(17);
 }
+
+
 
 int main(int argc, char** argv) {
     ::testing::InitGoogleTest(&argc, argv);

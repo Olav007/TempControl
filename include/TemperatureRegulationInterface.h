@@ -6,3 +6,4 @@ public:
     virtual void turnOnCooling() = 0;
     virtual void turnOff() = 0;
  };
+using TemperatureRegulationInterfaceP = TemperatureRegulationInterface*;

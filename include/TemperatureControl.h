@@ -1,17 +1,17 @@
 #pragma once
 #include "TemperatureRegulationInterface.h"
 
-template <typename TemperatureRegulationInterfaceT = TemperatureRegulationInterface>
+template <typename TemperatureRegulationInterfaceTP = TemperatureRegulationInterfaceP >
 class TemperatureControl
 {
 private:
-    TemperatureRegulationInterfaceT& temperatureRegulationInterface;
+    TemperatureRegulationInterfaceTP const temperatureRegulationInterface;
     float minTemp;
     float maxTemp;
 public:
 
 
-    TemperatureControl(TemperatureRegulationInterfaceT& temperatureRegulationInterface, float minTemp, float maxTemp)
+    TemperatureControl(TemperatureRegulationInterfaceTP const temperatureRegulationInterface, float minTemp, float maxTemp)
 		: temperatureRegulationInterface(temperatureRegulationInterface), minTemp(minTemp), maxTemp(maxTemp)
 	{
 	}
@@ -20,15 +20,15 @@ public:
     {
         if (currentTemp <= minTemp)
         {
-			temperatureRegulationInterface.turnOnHeating();
+			temperatureRegulationInterface->turnOnHeating();
 		}
         else if (currentTemp >= maxTemp)
         {
-			temperatureRegulationInterface.turnOnCooling();
+			temperatureRegulationInterface->turnOnCooling();
 		}
         else
         {
-			temperatureRegulationInterface.turnOff();
+			temperatureRegulationInterface->turnOff();
 		}
 	}
 
