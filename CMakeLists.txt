@@ -8,8 +8,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # Enable testing with CTest
 enable_testing()
 
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
-
+#include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 # Add source files
 set(SOURCES
@@ -20,7 +19,7 @@ set(SOURCES
 find_package(GTest REQUIRED)
 
 # Include Google Test and your project's header directories
-include_directories(${GTEST_INCLUDE_DIRS} ${PROJECT_SOURCE_DIR}/include)
+include_directories(${GTEST_INCLUDE_DIRS} ${PROJECT_SOURCE_DIR}/api)
 
 # Add executable target
 add_executable(TempControlTest ${SOURCES})

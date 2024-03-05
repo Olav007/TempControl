@@ -17,10 +17,18 @@ private:
     TemperatureRegulationInterfaceTP const temperatureRegulationInterface;
     TempNumber minTemp;
     TempNumber maxTemp;
+    static void validate(TempNumber min, TempNumber max)
+    {
+        if (min > max)
+        {
+			throw std::invalid_argument("minTemp must be less than maxTemp");
+		}
+	}
 public:
     TemperatureControl(TemperatureRegulationInterfaceTP const temperatureRegulationInterface, TempNumber minTemp, TempNumber maxTemp)
-		: temperatureRegulationInterface(temperatureRegulationInterface), minTemp(minTemp), maxTemp(maxTemp)
+		: temperatureRegulationInterface(temperatureRegulationInterface),  minTemp(minTemp), maxTemp(maxTemp)
 	{
+        validate(minTemp, maxTemp);
 	}
 
     void regulateTemperature(TempNumber currentTemp)
@@ -45,9 +53,10 @@ public:
         return minTemp;
     }
 
-    void setMinTemp(TempNumber minTemp)
+    void setMinTemp(TempNumber minTemp_p)
     {
-        this->minTemp = minTemp;
+        validate(minTemp_p, maxTemp);
+        this->minTemp = minTemp_p;
     }
 
     TempNumber getMaxTemp() const
@@ -55,8 +64,9 @@ public:
         return maxTemp;
     }
 
-    void setMaxTemp(float maxTemp)
+    void setMaxTemp(TempNumber  maxTemp_p)
     {
-        this->maxTemp = maxTemp;
+        validate(minTemp, maxTemp_p);
+        this->maxTemp = maxTemp_p;
     }
 };
