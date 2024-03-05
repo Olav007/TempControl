@@ -24,7 +24,6 @@ TEST(TemperatureControl, testRegulateTemperatureCooling)
 
 TEST(TemperatureControl, testRegulateTemperatureHeatAndSharedPointer)
 {
-
     auto moccPtr = std::make_shared<TemperatureRegulationMock>();
     EXPECT_CALL(*moccPtr, turnOnHeating());
     TemperatureControl<decltype(moccPtr)> tc(moccPtr, 18, 22);
