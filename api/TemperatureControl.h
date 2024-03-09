@@ -21,7 +21,7 @@ private:
     {
         if (min > max)
         {
-			throw std::invalid_argument("minTemp must be less than maxTemp");
+		    throw "minTemp must be less than maxTemp"; //const char* because we don't want to include headers
 		}
 	}
 public:

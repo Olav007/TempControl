@@ -1,6 +1,7 @@
+#include "TemperatureControl.h" // Header here to make sure we have no dependence on libraries
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
-#include "TemperatureControl.h"
+
 
 using ::testing::AtLeast;
 using ::testing::_;
