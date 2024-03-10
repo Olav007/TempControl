@@ -21,9 +21,18 @@ TEST(TemperatureControl, test_Cooling)
     tc.regulateTemperature(23);
 }
 
-TEST(TemperatureControl, test_Heat_and_Interface_template)
+TEST(TemperatureControl, test_Heating)
+{
+    TemperatureRegulationMock mocc;
+    EXPECT_CALL(mocc, turnOnHeating());
+    TemperatureControl<> tc(&mocc, 18, 22);
+    tc.regulateTemperature(16);
+}
+
+TEST(TemperatureControl, test_Heat_and_Smart_pointer)
 {
     auto moccPtr = std::make_shared<TemperatureRegulationMock>();
+    EXPECT_CALL(*moccPtr, turnOnHeating());
     TemperatureControl<decltype(moccPtr)> tc(moccPtr, 19, 21);
     tc.regulateTemperature(18);
 }
@@ -70,8 +79,8 @@ TEST(TemperatureControl, test_Change_temperature_and_Cooling)
 TEST(TemperatureControl, test_Heating_and_double)
 {
     TemperatureRegulationMock mocc;
-    TemperatureControl<TemperatureRegulationInterfaceP, double> tc(&mocc, 19.01d, 21.21);
-    ASSERT_EQ(tc.getMinTemp(), 19.01d);
+    TemperatureControl<TemperatureRegulationInterfaceP, double> tc(&mocc, 19.01, 21.21);
+    ASSERT_EQ(tc.getMinTemp(), 19.01);
     ASSERT_EQ(tc.getMaxTemp(), 21.21);
     tc.setMinTemp(18.18);
     tc.setMaxTemp(23.23);
